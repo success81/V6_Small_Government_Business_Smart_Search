@@ -1,0 +1,412 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Small Business Smart Search</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
+<script>
+		$(document).ready(function(){
+    		$('[data-bs-toggle="tooltip"]').tooltip();   
+		});
+	
+	</script>
+	<style>
+	@charset "utf-8";
+/* CSS Document */
+body { 
+	margin: auto auto;
+	background-image: url("https://storage.googleapis.com/capability_statements/boardroom_b2-t-min.png");
+	background-position: center center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	font-size: 16px;
+}
+
+.head-img {
+	background: hsla(225, 51%, 25%, 1);
+	background: linear-gradient(90deg, hsla(225, 51%, 25%, 1) 0%, hsla(155, 100%, 24%, 1) 50%, hsla(225, 51%, 25%, 1) 100%);
+	background: -moz-linear-gradient(180deg, hsla(225, 51%, 25%, 1) 0%, hsla(155, 100%, 24%, 1) 50%, hsla(225, 51%, 25%, 1) 100%);
+	background: -webkit-linear-gradient(180deg, hsla(225, 51%, 25%, 1) 0%, hsla(155, 100%, 24%, 1) 50%, hsla(225, 51%, 25%, 1) 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#1F2F5F", endColorstr="#007C48", GradientType=1 );
+	position: relative;
+	top: 0;
+	width: 100%;
+}
+
+.doe-logo {
+	width: 7.5%;
+	padding: 2%;
+}
+
+.doe-logo:hover {
+	opacity: 80%;
+}
+
+.osdbu-logo {
+	float: right;
+	width: 20%;
+	padding: 3%;
+}
+
+.osdbu-logo:hover {
+	opacity: 80%;
+}
+
+.header-text {
+	text-align: center;
+	position: relative;
+	top: 10%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #FFF;
+	color: black;
+	-webkit-box-shadow: -4px 4px 12px 4px #0F0F0F;
+	box-shadow: -4px 4px 14px 4px #0F0F0F;
+}
+
+#wrapper {
+	margin: 0 auto;
+	padding: 0 5%;
+	clear: both;
+	width: 80%;
+	height: 100%;
+	min-height: 100%;
+	position: relative;
+	background: rgba(255,255,255, 0.6);
+	top: -20px;
+	position: relative;
+}
+
+#wrapper table  {
+    margin: auto auto;
+    font-family: inherit;
+}
+#wrapper table .td-2 {
+    padding-left: 14%;
+}
+table tr .td-1 {
+    padding-left: 0%;
+}
+.td-2 ul li {
+    margin-top: 1.5%;
+}
+
+.head-img .header-text h1 {
+    font-family: calibri;
+    color:#7895B5;
+	letter-spacing: 8px;
+}
+#wrapper table select {
+    font-size: 16px;
+	width: 90%;
+	cursor: pointer;
+}
+
+
+.td-2 ul li {
+    display: block;
+}
+
+table a b {
+    text-decoration: underline;
+}
+
+label {
+	cursor: pointer;
+}
+
+input {
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    vertical-align: center;
+    position: relative;
+    top: -1px;
+}
+
+b {
+	font-size: 16px;
+    display: inline-block;
+    vertical-align: top;
+	width: 75%;
+}
+
+a:active, a:visited {
+	color: blue;
+}
+table ul li {
+    display: block;
+}
+
+textarea {
+	width: 88%;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif"
+}
+		
+input[type="checkbox"] {
+  	-ms-transform: scale(1);
+  	-moz-transform: scale(1);
+ 	 -webkit-transform: scale(1);
+  	-o-transform: scale(1); 
+  	transform: scale(1);
+}
+
+i {
+	color:#525252
+}
+
+.small-text li b {
+    font-size: 15.5px;
+}
+		
+option {
+	cursor: pointer;
+}
+
+
+	</style>
+</head>
+
+<body>
+<div class="head-img"> <a href="https://www.energy.gov/"> <img class="doe-logo" src="https://storage.googleapis.com/capability_statements/DOE%20logo.png" alt="Department of Energy Logo"> </a> <a href="https://www.energy.gov/osdbu/office-small-and-disadvantaged-business-utilization"> <img class="osdbu-logo" src="https://storage.googleapis.com/capability_statements/OSDBU_logo_colors.png" alt="OSDBU Logo"> </a>
+  <div class="header-text">
+    <h1>OSDBU Small Business Smart Search</h1>
+  </div>
+</div>
+<div id="wrapper"> <br>
+		  <br>
+ 
+<table width="90%" border="0">
+  <tbody>
+    <tr>
+      <td class="td-1">
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-6 col-sm-6">
+  <form name="databaseForm" method="POST", id="main_form" action="{{url_for('home')}}">
+    <b>Business Name:</b>
+    <br>
+    <input type="text", name='a', value="none" id="name">
+    <br>
+    <br>
+    <b>NAICS Code(s): </b>
+    <br>
+    <input type="text", name='b', value="none" id="naics">
+    <br>
+    <br>
+    <b>State/Territory: </b><br>
+    <select name = "c">
+      <option value="none">none</option>
+      <option value="Alabama">Alabama</option>
+      <option value="Alaska">Alaska</option>
+      <option value="Arizona">Arizona</option>
+      <option value="Arkansas">Arkansas</option>
+      <option value="California">California</option>
+      <option value="Colorado">Colorado</option>
+      <option value="Connecticut">Connecticut</option>
+      <option value="Delaware">Delaware</option>
+      <option value="District of Columbia">District Of Columbia</option>
+      <option value="Florida">Florida</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Hawaii">Hawaii</option>
+      <option value="Idaho">Idaho</option>
+      <option value="Illinois">Illinois</option>
+      <option value="Indiana">Indiana</option>
+      <option value="Iowa">Iowa</option>
+      <option value="Kansas">Kansas</option>
+      <option value="Kentucky">Kentucky</option>
+      <option value="Louisiana">Louisiana</option>
+      <option value="Maine">Maine</option>
+      <option value="Maryland">Maryland</option>
+      <option value="Massachusetts">Massachusetts</option>
+      <option value="Michigan">Michigan</option>
+      <option value="Minnesota">Minnesota</option>
+      <option value="Mississippi">Mississippi</option>
+      <option value="Missouri">Missouri</option>
+      <option value="Montana">Montana</option>
+      <option value="Nebraska">Nebraska</option>
+      <option value="Nevada">Nevada</option>
+      <option value="New Hampshire">New Hampshire</option>
+      <option value="New Jersey">New Jersey</option>
+      <option value="New Mexico">New Mexico</option>
+      <option value="New York">New York</option>
+      <option value="North Carolina">North Carolina</option>
+      <option value="North Dakota">North Dakota</option>
+      <option value="Ohio">Ohio</option>
+      <option value="Oklahoma">Oklahoma</option>
+      <option value="Oregon">Oregon</option>
+      <option value="Pennsylvania">Pennsylvania</option>
+      <option value="Rhode Island">Rhode Island</option>
+      <option value="South Carolina">South Carolina</option>
+      <option value="South Dakota">South Dakota</option>
+      <option value="Tennessee">Tennessee</option>
+      <option value="Texas">Texas</option>
+      <option value="Utah">Utah</option>
+      <option value="Vermont">Vermont</option>
+      <option value="Virginia">Virginia</option>
+      <option value="Washington">Washington</option>
+      <option value="West Virginia">West Virginia</option>
+      <option value="Wisconsin">Wisconsin</option>
+      <option value="Wyoming">Wyoming</option>
+      <option value="American Samoa">American Samoa</option>
+      <option value="Guam">Guam</option>
+      <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+      <option value="Puerto Rico">Puerto Rico</option>
+      <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+      <option value="Virgin Islands">Virgin Islands</option>
+    </select>
+    <br>
+	  <br>
+	  <br>
+	  <a href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" title="This is an exclusionary search. &#013;For example, if you select 8(a) you will get only 8(a) companies. You can also select multiple groups at one time.">
+		  
+			  <b>Previous Experience</b></a><br>
+	  <ul class="small-text">
+		  <li>
+			 <label>
+      			<input type='checkbox', value = "DOE Experience", name = "exp">
+				 <b>DOE Experience</b>
+			</label>
+		  </li>
+	  <li>
+		  <label>
+      		<input type='checkbox', value = "GOV Experience", name = "exp">
+			  <b>GOV Experience</b>
+		  </label>
+	  </li>
+	  <li>
+		  <label>
+     		 <input type='checkbox', value = "NNSA Experience", name = "exp">
+			  <b>NNSA Experience</b>
+		</label>
+	  </li>
+	  </ul>
+
+	<br>
+    <span class="tooltip"><a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Smart Filter Search matches your search input to the most similar capability statements. This feature allows you to search in multiple ways&#013; Multi-term search: In this method you input the key features of a company that you are looking for. Example--- Cybersecurity Services Cloud AWS &#013; Natural Language Search: This search method has you search in the way you would naturally speak. Example--- 'I'm looking for a company that performs Cybersecurity services in the AWS cloud' &#013; Solicitation Search: Cut and paste a synopsis of the solcitation into the field. &#013; How to Read the Smart Filter Score: &#013; The Smart Filter Score goes from 0.0 to 1. The more similar the search input is to the capability statement the higher the score. The less similar the search input is the lower the score. The results of the search are in score ranked order.  " ><b>Smart Filter Search:</b></a> </span> <br>
+    <textarea rows="4", cols="40", name="k", form="main_form" value="none">none</textarea>
+    <br>
+	  <i>**Must have at least one other search criteria**</i>
+    <br>
+    
+   </td>
+      <td class="td-2"><a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="This is an exclusionary search. &#013;For example, if you select 8(a) you will get only 8(a) companies. You can also select multiple groups at one time."><b>Type of Business</b></a><br>
+      <ul>
+        <li>
+		  <label>
+				<input type='checkbox', value = "Small Business", name = "choices">
+			  <b>Small Business</b>
+			</label>
+        </li>
+
+        <li>
+		  <label>
+          		<input type='checkbox', value = "Small Disadvantaged Business(SDB)", name = "choices">
+			    <b>Small Disadvantaged Business(SDB)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "8(a) Program", name = "choices">
+				<b>8(a) Program </b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Minority-Owned", name = "choices">
+				<b>Minority-Owned</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Alaska Native Corporation(ANC)", name = "choices">
+				<b>Alaska Native Corporation(ANC)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Native Hawaiian Organization(NHO)", name = "choices">
+				<b>Native Hawaiian Organization(NHO)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Indian Tribe", name = "choices">
+				<b>Indian Tribe</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Historically Underutilized Business Zone(HUBZone)", name = "choices">
+				<b>Historically Underutilized Business Zone(HUBZone)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Veteran-Owned Small Business(VOSB)", name = "choices">
+				<b>Veteran-Owned Small Business(VOSB)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Service-Disabled Veteran-Owned Small Business(SDVOSB)", name = "choices">
+				<b>Service-Disabled Veteran-Owned Small Business(SDVOSB)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Woman-Owned Small Business(WOSB)", name = "choices">
+				<b>Woman-Owned Small Business(WOSB)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Economically Disadvantaged Woman-Owned Small Business(EDWOSB)", name = "choices">
+				<b>Economically Disadvantaged Woman-Owned Small Business(EDWOSB)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Minority Serving Institution(MSI)", name = "choices">
+				<b>Minority Serving Institution(MSI)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Historically Black Colleges and Universities(HBCU)", name = "choices">
+				<b> Historically Black Colleges and Universities(HBCU)</b>
+			</label>
+        </li>
+        <li>
+			<label>
+          		<input type='checkbox', value = "Large Business", name = "choices">
+				<b>Large Business</b>
+			</label>
+        </li>
+			<br>
+			<li>
+		   <input type="submit" , value='Submit', style='height:40px; width:150px',Text-align: center>
+		  </li>
+      </ul>
+      <br>
+		 
+      </td>
+    </tr>
+  </tbody>
+</table>
+		  <br>
+		  <br>
+		  <br>
+		  <br>
+    <h1>{{ title }}</h1>
+    {% block content %}{% endblock %}
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script> 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script> 
+    {% block scripts %}{% endblock %}
+  </form>
+</div>
+</body>
+</html>
