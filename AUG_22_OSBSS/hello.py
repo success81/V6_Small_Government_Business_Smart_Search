@@ -999,7 +999,7 @@ def home():
     #HBCU
     if hbcu_count == 1:
         for x in all_companies:
-            if x[16] == hcbu_input:
+            if x[16] == hbcu_input:
                     pass_list.append(x[0])
                     pass_list.append(x[1])
                     pass_list.append(x[2])
